@@ -11,7 +11,7 @@ public class Hammurabi {
     void playGame() {
         int people = 100;
         int acres = 1000;
-        int grain = 2800;
+        int grainBushels = 2800;
         int landVal = 19;
 
         System.out.println("O great Hammurabi!\n" +
@@ -24,19 +24,49 @@ public class Hammurabi {
                 "The city owns 1000 acres of land.\n" +
                 "Land is currently worth 19 bushels per acre.");
 
-        int acresToBuy = askHowManyAcresToBuy(landVal, grain);
-        
-        System.out.println("You bought "+Integer.toString(acresToBuy)+" acres");
+        int acresToBuy = askHowManyAcresToBuy(landVal, grainBushels);
+        if (grainBushels >= acres * 19) {
+            System.out.println("You bought " + Integer.toString(acresToBuy) + " acres");
+        } else {System.out.println("There is not enough grain available to buy " + Integer.toString(acresToBuy) +" acres. " +
+                "Please enter another number.");
+             acresToBuy = askHowManyAcresToBuy(landVal, grainBushels);
+            System.out.println("You bought " + Integer.toString(acresToBuy) + " acres");
+        }
 
+        int acresToSell = askHowManyAcresToSell(acres);
+        if (acres >= acres) {
+            System.out.println("You sold " + Integer.toString(acresToSell) + " acres");
+        } else {System.out.println("There are not enough acres available to buy " + Integer.toString(acresToSell) +" acres. " +
+                "Please enter another number.");
+            acresToSell = askHowManyAcresToSell(acres);
+            System.out.println("You bought " + Integer.toString(acresToSell) + " acres");
+        }
 
+        int grainToFeedPeople = askHowMuchGrainToFeedPeople(grainBushels);
+        if (grainBushels >= grainBushels) {
+            System.out.println("You fed your people " + Integer.toString(grainToFeedPeople) + " bushels");
+        } else {System.out.println("There are not enough bushels available to provide " + Integer.toString(grainToFeedPeople) +" grain. " +
+                "Please enter another number.");
+            grainToFeedPeople = askHowMuchGrainToFeedPeople(grainBushels);
+            System.out.println("You bought " + Integer.toString(grainBushels) + " acres");
+        }
 
     }
 
     int askHowManyAcresToBuy(int price, int bushels) {
-
         int acres = getNumber("\n How many acres do you wish to buy?\n");
         return acres;
 
+    }
+
+    int askHowManyAcresToSell(int acresOwned) {
+        int acres = getNumber("\n How many acres to do you wish to sell?");
+        return acres;
+    }
+
+    int askHowMuchGrainToFeedPeople(int bushels) {
+        int grainBushels = getNumber("\n How many bushels of grain do you wish to feed your people?");
+        return grainBushels;
     }
 
     int getNumber(String message) {
