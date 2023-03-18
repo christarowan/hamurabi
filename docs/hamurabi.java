@@ -10,7 +10,7 @@ import java.util.Scanner;
 //
 public class HAMURABI {
 	static int totalDeaths = 0, percentDied = 0, year = 0, population = 95, stores = 2800, immigrants = 5, deaths,
-		harvest = 3000, yeild = 3, acres = harvest / yeild, eaten = harvest - stores, landPrice, fullPeople, temp;
+		harvest = 3000, yield = 3, acres = harvest / yield, eaten = harvest - stores, landPrice, fullPeople, temp;
 	static boolean plague = false;
 	final static String FINK = "DUE TO THIS EXTREME MISMANAGEMENT YOU HAVE NOT ONLY\n" +
 		"BEEN IMPEACHED AND THROWN OUT OF OFFICE BUT YOU HAVE\n" +

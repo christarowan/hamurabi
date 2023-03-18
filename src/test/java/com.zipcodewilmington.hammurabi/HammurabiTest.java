@@ -1,4 +1,4 @@
-package hammurabi;
+package com.zipcodewilmington.hammurabi;
 
 import static org.junit.Assert.*;
 
