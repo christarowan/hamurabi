@@ -42,13 +42,23 @@ public class Hammurabi {
             System.out.println("You bought " + Integer.toString(acresToSell) + " acres");
         }
 
+
         int grainToFeedPeople = askHowMuchGrainToFeedPeople(grainBushels);
         if (grainBushels >= grainBushels) {
-            System.out.println("You fed your people " + Integer.toString(grainToFeedPeople) + " bushels");
+            System.out.println("You have fed your people " + Integer.toString(grainToFeedPeople) + " bushels");
         } else {System.out.println("There are not enough bushels available to provide " + Integer.toString(grainToFeedPeople) +" grain. " +
                 "Please enter another number.");
             grainToFeedPeople = askHowMuchGrainToFeedPeople(grainBushels);
-            System.out.println("You bought " + Integer.toString(grainBushels) + " acres");
+            System.out.println("You fed your people " + Integer.toString(grainBushels) + " bushels");
+        }
+
+        int acresToPlant = askHowManyAcresToPlant(acres,people,grainBushels);
+        if (acres >= acres && people >= people && grainBushels >= grainBushels) {
+            System.out.println("You have planted " + Integer.toString(acresToPlant) + " acres of grain");
+        } else {System.out.println("There are not enough acres available to plant " + Integer.toString(acresToPlant) +" acres. " +
+                "Please enter another number.");
+            acresToPlant = askHowManyAcresToPlant(acres,people,grainBushels);
+            System.out.println("You planted " + Integer.toString(acresToPlant) + " acres of grain");
         }
 
     }
@@ -67,7 +77,18 @@ public class Hammurabi {
     int askHowMuchGrainToFeedPeople(int bushels) {
         int grainBushels = getNumber("\n How many bushels of grain do you wish to feed your people?");
         return grainBushels;
+
     }
+
+    int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
+        int acresToPlant = getNumber("\n How many acres of land would you like to plant grain on?");
+        return acresToPlant;
+    }
+
+
+
+
+
 
     int getNumber(String message) {
         while (true) {
