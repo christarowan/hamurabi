@@ -31,15 +31,17 @@ public class Hammurabi {
                 "Please enter another number.");
              acresToBuy = askHowManyAcresToBuy(landVal, grainBushels);
             System.out.println("You bought " + Integer.toString(acresToBuy) + " acres");
+
         }
 
         int acresToSell = askHowManyAcresToSell(acres);
-        if (acres >= acres) {
+        int acresOwned = 0;
+        if (acresOwned >= acres) {
             System.out.println("You sold " + Integer.toString(acresToSell) + " acres");
         } else {System.out.println("There are not enough acres available to buy " + Integer.toString(acresToSell) +" acres. " +
                 "Please enter another number.");
             acresToSell = askHowManyAcresToSell(acres);
-            System.out.println("You bought " + Integer.toString(acresToSell) + " acres");
+            System.out.println("You sold " + Integer.toString(acresToSell) + " acres");
         }
 
 
@@ -53,7 +55,7 @@ public class Hammurabi {
         }
 
         int acresToPlant = askHowManyAcresToPlant(acres,people,grainBushels);
-        if (acres >= acres && people >= people && grainBushels >= grainBushels) {
+        if (acresOwned >= acres && people >= people && grainBushels >= grainBushels) {
             System.out.println("You have planted " + Integer.toString(acresToPlant) + " acres of grain");
         } else {System.out.println("There are not enough acres available to plant " + Integer.toString(acresToPlant) +" acres. " +
                 "Please enter another number.");
