@@ -18,6 +18,8 @@ public class Hammurabi {
 
 
 
+
+
     public static void main(String[] args) {
        new Hammurabi().playGame();
     }
@@ -44,13 +46,13 @@ public class Hammurabi {
             grainBushels = grainBushels - (acresToBuy * landVal);
             grainBushels = grainBushels + (acresToSell * landVal);
             grainBushels = grainBushels - grainToFeedPeople;
-          //  grainBushels = grainBushels - bushelsUsedAsSeed;
+            //  grainBushels = grainBushels - bushelsUsedAsSeed;
 
 
-         //   int plagueDeaths = plagueDeaths(population);
-         //   population = population - plagueDeaths;
+            //   int plagueDeaths = plagueDeaths(population);
+            //   population = population - plagueDeaths;
 
-            int starved = starvationDeaths(population,grainToFeedPeople);
+            int starved = starvationDeaths(population, grainToFeedPeople);
             population = population - starved;
 
            /* boolean isUprising = uprising(people,starved);
@@ -59,40 +61,43 @@ public class Hammurabi {
                 System.exit(0);
             } */
 
+            int immigrants = 0;
             if (starved == 0) {
-                int immigrants = immigrants(population, acres, grainBushels);
+                immigrants = immigrants(population, acres, grainBushels);
                 population = population + immigrants;
+                //   int newPeople = immigrants - population;
             }
 
-            int grainHarvested = harvest(acresToPlant,0);
+            int grainHarvested = harvest(acresToPlant, 0);
             grainBushels = grainBushels + grainHarvested;
 
-           // int grainEaten = grainEatenByRats(grainBushels);
-          //  grainBushels = grainBushels - grainEaten;
+             int grainEaten = grainEatenByRats(grainBushels);
+              grainBushels = grainBushels - grainEaten;
 
             landVal = newCostOfLand();
 
-            year ++;
+            year++;
 
-            System.out.println (population);
-            System.out.println (acres);
-            System.out.println (grainBushels);
-            System.out.println (acresToPlant);
-            System.out.println (bushelsUsedAsSeed);
+            System.out.println(population);
+            System.out.println(acres);
+            System.out.println(grainBushels);
+            System.out.println(acresToPlant);
+            System.out.println(bushelsUsedAsSeed);
+            System.out.println(grainHarvested);
 
 
             System.out.println("\nO great Hammurabi!\n" +
-                "You are in year " + year + " of your ten year rule.\n" +
-                "In the previous year 0 people starved to death.\n" +
-                "In the previous year 5 people entered the kingdom.\n" +
-                "The population is now 100.\n" +
-                "We harvested " + grainBushels + " bushels at 3 bushels per acre.\n" +
-                "Rats destroyed 200 bushels, leaving " + grainBushels + " bushels in storage.\n" +
-                "The city owns " + acres + " acres of land.\n" +
-                "Land is currently worth " + landVal + " bushels per acre.");
+                    "You are in year " + year + " of your ten year rule.\n" +
+                    "In the previous year 0 people starved to death.\n" +
+                    "In the previous year " + immigrants + " people entered the kingdom.\n" +
+                    "The population is now " + population + ".\n" +
+                    "We harvested " + grainHarvested + " bushels at 3 bushels per acre.\n" +
+                    "Rats destroyed " + grainEaten + " bushels, leaving " + grainBushels + " bushels in storage.\n" +
+                    "The city owns " + acres + " acres of land.\n" +
+                    "Land is currently worth " + landVal + " bushels per acre.");
 
 
-    }
+        }
        // Each person needs at least 20 bushels of grain per year to survive
       //  Each person can farm at most 10 acres of land
        // It takes 2 bushels of grain to farm an acre of land
@@ -215,25 +220,41 @@ public class Hammurabi {
         }
         return false;
     }
-    int immigrants(int population, int acresOwned, int grainInStorage) {
+    int immigrants (int population, int acresOwned, int grainInStorage) {
         return (20 * acresOwned + grainInStorage) / (100 * population) + 1;
     }
 
     int harvest(int acres, int bushelsUsedAsSeed) {
-       Random rand = new Random();
-        int yield = rand.nextInt(5) + 1;
-       int bushelsHarvested = acresToPlant;
-       return bushelsHarvested;
+       //Random rand = new Random();
+        //int yield = rand.nextInt(5) + 1;
+      // int bushelsHarvested = acresToPlant;
+      // return bushelsHarvested;
+
+        int yieldPerAcre = (int) (Math.random() * 6) + 1; // generate random number between 1 and 6 (inclusive)
+        int totalYield = yieldPerAcre * acres; // calculate total yield
+        int grainHarvested = totalYield - bushelsUsedAsSeed;
+        return grainHarvested;
 
 
     }
     int grainEatenByRats(int bushels) {
-        Random rand = new Random();
+        if (Math.random() < 0.4) { // 40% chance of rats
+            double eatenPercentage = Math.random() * 0.2 + 0.1;
+            int grainEaten = (int) (bushels * eatenPercentage); // amount of grain eaten by rats
+            return grainEaten;
+        } else if
+            (grainBushels <= 0) {
+            return 0;
+        } else
         return 0;
     }
 
     int newCostOfLand() {
-        return 19;
+        int minPrice = 17;
+        int maxPrice = 23;
+        int range = maxPrice - minPrice + 1; // Adding 1 to include the upper bound
+        int randomValue = (int) (Math.random() * range) + minPrice;
+        return randomValue;
     }
 
 
