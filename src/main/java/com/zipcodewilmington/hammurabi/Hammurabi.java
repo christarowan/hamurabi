@@ -41,11 +41,11 @@ public class Hammurabi {
             int acresToPlant = askHowManyAcresToPlant(acres, population, grainBushels);
 
             acres = acres + acresToBuy - acresToSell;
-            grainBushels = grainBushels - (acresToBuy * landVal);
-            grainBushels = grainBushels + (acresToSell * landVal);
-            grainBushels = grainBushels - grainToFeedPeople;
+          
 
             int starved = starvationDeaths(population, grainToFeedPeople);
+
+           // boolean isPlague =
 
             if (grainToFeedPeople < population * 20) {
                 int grainDeficit = population * 20 - grainToFeedPeople;
@@ -78,7 +78,7 @@ public class Hammurabi {
 
             year++;
 
-           /* System.out.println(population);
+            /*System.out.println(population);
             System.out.println(acres);
             System.out.println(grainBushels);
             System.out.println(acresToPlant);
@@ -150,6 +150,7 @@ public class Hammurabi {
             System.out.println("There are " + grainBushels + " bushels available.");
             grainToFeedPeople = getNumber("Enter a number less than or equal to " + grainBushels + ":");
             System.out.println("You have fed your people " + grainToFeedPeople + " bushels.");
+            grainBushels -= grainToFeedPeople;
 
         }
         return bushels;
